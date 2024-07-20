@@ -27,32 +27,36 @@ const getComputerChoice = () => {
 }
 
 const playRound = (humanChoice, computerChoice) => {
-  if(humanChoice === computerChoice) {
-    div.innerText = `No points! You tied that round \n Human: ${humanScore} \n Computer: ${computerScore}`
-  } else if (humanChoice === 'rock') {
-    if (computerChoice === 'paper') {
+  const choiceStr = humanChoice + ' ' + computerChoice;
+  console.log(choiceStr);
+
+  switch (choiceStr) {
+    case 'rock paper':
       computerScore++;
       div.innerText = `You lose! Paper beats Rock \n Human: ${humanScore} \n Computer: ${computerScore}`
-    } else if (computerChoice === 'scissors') {
+      break;
+    case 'rock scissors':
       humanScore++;
       div.innerText = `You win! Rock beats Scissors \n Human: ${humanScore} \n Computer: ${computerScore}`
-    }
-  } else if (humanChoice === 'paper') {
-    if (computerChoice === "scissors") {
+      break;
+    case 'paper scissors':
       computerScore++;
       div.innerText = `You lose! Scissors beats Paper \n Human: ${humanScore} \n Computer: ${computerScore}`
-    } else if (computerChoice === 'rock') {
+      break;
+    case 'paper rock':
       humanScore++;
-      div.innerText = `You win! Paper beats Rock \n Human: ${humanScore} \n Computer: ${computerScore}`
-    } 
-  } else if (humanChoice === 'scissors') {
-    if (computerChoice === 'rock') {
+      div.innerText = `You win! Paper beats Rock \n Human: ${humanScore} \n Computer: ${computerScore}`;
+      break;
+    case 'scissors rock':
       computerScore++;
-      div.innerText = `You lose! Rock beats Scissors \n Human: ${humanScore} \n Computer: ${computerScore}`
-    } else if (computerChoice === 'paper') {
+      div.innerText = `You lose! Rock beats Scissors \n Human: ${humanScore} \n Computer: ${computerScore}`;
+      break;
+    case 'scissors paper':
       humanScore++;
-      div.innerText = `You win! Scissors beats Paper \n Human: ${humanScore} \n Computer: ${computerScore}`
-    }
+      div.innerText = `You win! Scissors beats Paper \n Human: ${humanScore} \n Computer: ${computerScore}`;
+      break;
+    default:
+      div.innerText = `No points! You tied that round \n Human: ${humanScore} \n Computer: ${computerScore}`;
   }
 }
 
@@ -69,10 +73,10 @@ const playGame = () => {
   
   if (humanScore === 5 || computerScore === 5) {
     if (computerScore === 5) {
-      div.innerText = `Oh no! The computer won the game. Click the button below to try again \n Final Score: \n Human - ${humanScore} Computer - ${computerScore}`;
+      div.innerText = `Oh no! The computer won the game. \n Click the button below to try again \n Final Score: \n Human - ${humanScore} | Computer - ${computerScore}`;
       hideButtons();
     } else if (humanScore === 5) {
-      div.innerText = `Let\'s go! You won the game. Click the button below to play again \n Final Score: \n Human - ${humanScore} Computer - ${computerScore}`;
+      div.innerText = `Let\'s go! You won the game. \n Click the button below to play again \n Final Score: \n Human - ${humanScore} | Computer - ${computerScore}`;
       hideButtons();
     }
   }
@@ -82,7 +86,8 @@ const hideButtons = () => {
   rockBtn.style.display = 'none';
   paperBtn.style.display = 'none';
   scissorsBtn.style.display = 'none';
-  playAgainBtn.style.display = 'block';
+  playAgainBtn.style.display = 'inline';
+  playAgainBtn.style.margin = 'auto';
 }
 
 const reset = () => {
